@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import PageTitle from './components/PageTitle/PageTitle.jsx'
+import NewAnimeInput from './components/NewAnimeInput/NewAnimeInput.jsx'
+import AnimeList from './components/AnimeList/AnimeList.jsx'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [listItems, setListItems] = useState([])
+
+	useEffect(() => {
+		fetch('/api/get-anime', {
+			method: 'GET'
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setListItems(data)
+			})
+	}, [])
+
+	return (
+		<div className="App">
+			<PageTitle />
+			<NewAnimeInput />
+			<AnimeList listItems={listItems} watchStatus="Watching" />
+			<AnimeList listItems={listItems} watchStatus="Completed" />
+		</div>
+	);
 }
 
 export default App;

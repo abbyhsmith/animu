@@ -1,0 +1,35 @@
+.modal {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modalContent {
+	background-color: var(--purple);
+	padding: 30px 50px;
+	display: grid;
+	align-items: center;
+	grid-row-gap: 20px; 
+	grid-template-columns: 300px 80px 100px 40px;
+	grid-template-rows: 60px 10px;
+}
+
+.submitButton {
+	padding: 5px;
+}
+
+.deleteAnime {
+	grid-row: 2;
+	grid-column: 1 / span 4;
+	justify-self: center;
+}
+
+.deleteButton {
+	padding: 5px 15px;
+}

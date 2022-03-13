@@ -1,57 +1,62 @@
-import React from 'react'
+import React, { useState } from 'react'
+import UpdateAnime from '../UpdateAnime/UpdateAnime.jsx'
 import './styles.scss'
 
-const AnimeList = ({listItems, watchStatus}) => {
+const AnimeList = ({listItems, watchStatus, fetchAnimeList}) => {
+	const [updatedTitle, setUpdatedTitle] = useState('')
+	const [updatedEpisodes, setUpdatedEpisodes] = useState('')
+	const [updatedStatus, setUpdatedStatus] = useState('')
+	const [animeId, setAnimeId] = useState(0)
+	const [showUpdateAnime, setShowUpdateAnime] = useState('hide')
+	
+	const showUpdateModal = (item) => {
+		setUpdatedTitle(item.anime)
+		setUpdatedEpisodes(item.episodes)
+		setUpdatedStatus(item.status)
+		setAnimeId(item._id)
+		setShowUpdateAnime('show')
+	}
+
 	return (
-		<div className="tableDiv">
-			<h2>{watchStatus}</h2>
-			<table className="animeListTable">
-				<thead>
-					<tr>
-						<td className="animeListTitleColumn">
-							Title:
-						</td>
-						<td className="animeListEpisodesColumn">
-							Episodes:
-						</td>
-						<td className="animeListStatusColumn">
-							Status:
-						</td>
-					</tr>
-				</thead>
-				<tbody>
-					{listItems &&
-						listItems
-							.filter(item => item.status === watchStatus)
-							.sort((a, b) => {
-								if(a.anime > b.anime) {
-									return 1
-								}
-								if(b.anime > a.anime) {
-									return -1
-								} else {
-									return 0
-								}
-							})
-							.map((item, i) => {
-								return (
-									<tr className="tableRow" key={`animu-${i}`}>
-										<td className="titleCell">
-											{item.anime}
-										</td>
-										<td className="episodesCell">
-											{item.episodes}
-										</td>
-										<td className="statusCell">
-											{item.status}
-										</td>
-									</tr>
-								)
-							})
-					}
-				</tbody>
-			</table>
-		</div>
+		<React.Fragment>
+			<div className="animeDiv">
+				<h2>{watchStatus}</h2>
+				<div className="animeListDiv">
+					<div className="animeListGridBoxes">
+						{listItems &&
+							listItems
+								.filter(item => item.status === watchStatus)
+								.sort((a, b) => {
+									if(a.anime.toLowerCase() > b.anime.toLowerCase()) {
+										return 1
+									}
+									if(b.anime.toLowerCase() > a.anime.toLowerCase()) {
+										return -1
+									} else {
+										return 0
+									}
+								})
+								.map((item, i) => {
+									return (
+										<div className="singleAnimeInfo" key={`animu-${i}`} onClick={() => showUpdateModal(item)}>
+											<div className="boxInfo boxInfoTitle">
+												{item.anime}
+											</div>
+											<div className="boxInfo">
+												Episodes: {item.episodes}
+											</div>
+											<div className="boxInfo">
+												{item.status}
+											</div>
+										</div>
+									)
+								})
+						}
+					</div>
+				</div>
+			</div>
+			{showUpdateAnime === 'show' && <UpdateAnime fetchAnimeList={fetchAnimeList} setShowUpdateAnime={setShowUpdateAnime} setUpdatedTitle={setUpdatedTitle} setUpdatedEpisodes={setUpdatedEpisodes} setUpdatedStatus={setUpdatedStatus} updatedTitle={updatedTitle} updatedEpisodes={updatedEpisodes} updatedStatus={updatedStatus} animeId={animeId} />}
+		</React.Fragment>
 	)
 }
 

@@ -1,11 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './styles.scss'
 
-const Input = () => {
-	const [title, setTitle] = useState('')
-	const [episodes, setEpisodes] = useState('')
-	const [status, setStatus] = useState('Watching')
-
+const Input = ({title, setTitle, episodes, setEpisodes, status, setStatus, fetchAnimeList}) => {
 	const addNewAnime = (e) => {
 		e.preventDefault()
 		if(title && episodes) {
@@ -17,10 +13,13 @@ const Input = () => {
 				},
 				body: JSON.stringify({anime: title, episodes: episodes, status: status})
 			})
+			.then(() => {
+				setTitle('')
+				setEpisodes('')
+				setStatus('Watching')
+				fetchAnimeList()
+			})
 		}
-		setTitle('')
-		setEpisodes('')
-		setStatus('Watching')
 	}
 
 	return (

@@ -2,6 +2,10 @@
 
 :root {
 	--grey: rgb(120,120,120);
+	--pink: #FCE2FF;
+	--dark-pink: #FBD3FF;
+	--purple: #E5CCFF;
+	--dark-purple:  #DCBAFF;
 	--gradient: linear-gradient(135deg, rgba(187,123,238,1) 0%, rgba(255,215,251,1)50%);
 }
 
@@ -12,9 +16,11 @@
 	font-family: 'Varela Round', sans-serif;
 	color: var(--grey);
 	font-weight: lighter;
+	font-size: 12px;
 }
 
 html {
 	background-image: url(./images/molang.jpg);
 	background-repeat: repeat;
+	background-attachment: fixed;
 }

@@ -1,46 +1,49 @@
-.tableDiv {
+.animeDiv {
 	margin: 20px auto;
-	width: 730px;
-	padding-bottom: 25px;
+	width: 800px;
 	border: 1px solid var(--grey);
-	background-color: rgba(255,255,255,0.8);
-	border-radius: 10px;
+	background-color: rgba(255,255,255,0.7);
 }
 
 h2 {
-	font-size: 22px;
-	margin-bottom: 5px;
-	padding: 15px 25px;
-	background: var(--gradient);
-	border-radius: 10px 10px 0 0;
+	font-size: 18px;
+	padding: 10px 20px;
+	background: rgba(255,255,255,0.8);
 }
 
-.animeListTable {
-	margin: 0 auto;
-	border-collapse: collapse;
+.animeListGridBoxes {
+	display: grid;
+	grid-template-columns: 1fr;
 }
 
-.animeListTitleColumn {
-	width: 480px;
-	font-weight: bold;
+.singleAnimeInfo {
+	padding: 5px;
+	text-align: center;
+	display: grid;
+	grid-template-columns: 4fr 2fr 2fr;
+	opacity: 0.9;
 }
 
-.animeListEpisodesColumn {
-	width: 120px;
-	font-weight: bold;
+.boxInfoTitle {
+	align-self: center;
+	font-style: italic;
 }
 
-.animeListStatusColumn {
-	width: 80px;
-	font-weight: bold;
+.boxInfo {
+	padding: 5px;
+	cursor: pointer;
 }
 
-.tableRow {
-	height: 30px;
+.singleAnimeInfo:nth-of-type(2n-1) {
+	background-color: var(--purple);
+	&:hover {
+		background-color: var(--dark-purple);
+	}
 }
 
-.episodesCell, .titleCell, .statusCell, .animeListStatusColumn, .animeListEpisodesColumn, .animeListTitleColumn {
-	border-bottom: 1px solid var(--grey);
-	padding-top: 5px;
-	padding-bottom: 5px;
+.singleAnimeInfo:nth-of-type(2n) {
+	background-color: var(--pink);
+	&:hover {
+		background-color: var(--dark-pink);
+	}
 }

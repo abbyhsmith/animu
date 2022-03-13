@@ -20,14 +20,14 @@ router.post('/add-anime', (req, res, next) => {
 	}
 })
 
-router.delete('/delete-anime:id', (req, res, next) => {
-	Anime.findOneAndDelete({_id: req.params.id})
+router.delete('/delete-anime', (req, res, next) => {
+	Anime.findOneAndDelete({_id: req.body.id})
 		.then(data => res.json(data))
 		.catch(next)
 })
 
-router.put('/update-anime:id', (req, res, next) => {
-	Anime.findOneAndUpdate({_id: req.params.id, anime: req.body.anime, episodes: req.body.episodes, status: req.body.status})
+router.put('/update-anime', (req, res, next) => {
+	Anime.findOneAndUpdate({_id: req.body.id}, {anime: req.body.anime, episodes: req.body.episodes, status: req.body.status})
 		.then(data => res.json(data))
 		.catch(next)
 })

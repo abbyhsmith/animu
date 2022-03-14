@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles.scss'
+import FlowerSvg from '../svgs/Flower.jsx'
 
 const Input = ({title, setTitle, episodes, setEpisodes, status, setStatus, fetchAnimeList}) => {
 	const addNewAnime = (e) => {
@@ -38,7 +39,7 @@ const Input = ({title, setTitle, episodes, setEpisodes, status, setStatus, fetch
 						<option value="Completed">Completed</option>
 						<option value="Dropped">Dropped</option>
 					</select>
-					<button className="submitButton" type="submit">+</button>
+					<button className="submitButton" type="submit"><FlowerSvg /></button>
 				</div>
 			</form>
 		</div>

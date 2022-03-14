@@ -11,7 +11,8 @@
 }
 
 .modalContent {
-	background-color: var(--purple);
+	background-color: rgba(25,25,25,0.8);
+	border: 1px solid var(--grey);
 	padding: 30px 50px;
 	display: grid;
 	align-items: center;

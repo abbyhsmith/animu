@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 :root {
-	--grey: rgb(120,120,120);
-	--pink: #FCE2FF;
-	--dark-pink: #FBD3FF;
-	--purple: #E5CCFF;
-	--dark-purple:  #DCBAFF;
-	--gradient: linear-gradient(135deg, rgba(187,123,238,1) 0%, rgba(255,215,251,1)50%);
+	--grey: rgb(170,170,170);
+	--dark-grey: rgb(25,25,25);
+	--red: #e3632f;
+	--dark-red: #e34a2f;
 }
 
 * {
@@ -14,13 +12,14 @@
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Varela Round', sans-serif;
-	color: var(--grey);
 	font-weight: lighter;
 	font-size: 12px;
 }
 
 html {
-	background-image: url(./images/molang.jpg);
-	background-repeat: repeat;
+	background-image: url(./images/HuTao.png);
+	background-repeat: no-repeat;
 	background-attachment: fixed;
+	background-color: #000000;
+	background-position: bottom left;
 }

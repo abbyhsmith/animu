@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import UpdateAnime from '../UpdateAnime/UpdateAnime.jsx'
+import SearchBar from '../SearchBar/SearchBar.jsx'
+import LazyLoad from 'react-lazyload'
+
 import './styles.scss'
 
 const AnimeList = ({listItems, watchStatus, fetchAnimeList}) => {
@@ -8,6 +11,7 @@ const AnimeList = ({listItems, watchStatus, fetchAnimeList}) => {
 	const [updatedStatus, setUpdatedStatus] = useState('')
 	const [animeId, setAnimeId] = useState(0)
 	const [showUpdateAnime, setShowUpdateAnime] = useState('hide')
+	const [searchTerm, setSearchTerm] = useState('')
 	
 	const showUpdateModal = (item) => {
 		setUpdatedTitle(item.anime)
@@ -17,14 +21,27 @@ const AnimeList = ({listItems, watchStatus, fetchAnimeList}) => {
 		setShowUpdateAnime('show')
 	}
 
+	let filteredListItems = [...listItems]
+
+	if(searchTerm!=='') {
+		filteredListItems = listItems.filter((search) => {
+			return search.anime.toLowerCase().includes(searchTerm.toLowerCase())
+		})
+	}
+
 	return (
 		<React.Fragment>
 			<div className="animeDiv">
-				<h2>{watchStatus}</h2>
+				<div className='titleBarDiv'>
+					<h2>{watchStatus}</h2>
+					{watchStatus==='Completed'&&
+						<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+					}
+				</div>
 				<div className="animeListDiv">
 					<div className="animeListGridBoxes">
-						{listItems &&
-							listItems
+						{filteredListItems &&
+							filteredListItems
 								.filter(item => item.status === watchStatus)
 								.sort((a, b) => {
 									if(a.anime.toLowerCase() > b.anime.toLowerCase()) {
@@ -38,17 +55,19 @@ const AnimeList = ({listItems, watchStatus, fetchAnimeList}) => {
 								})
 								.map((item, i) => {
 									return (
-										<div className="singleAnimeInfo" key={`animu-${i}`} onClick={() => showUpdateModal(item)}>
-											<div className="boxInfo boxInfoTitle">
-												{item.anime}
+										<LazyLoad className="singleAnimeInfoRow">
+											<div className="singleAnimeInfo" key={`animu-${i}`} onClick={() => showUpdateModal(item)}>
+												<div className="boxInfo boxInfoTitle">
+													{item.anime}
+												</div>
+												<div className="boxInfo">
+													Episodes: {item.episodes}
+												</div>
+												<div className="boxInfo">
+													{item.status}
+												</div>
 											</div>
-											<div className="boxInfo">
-												Episodes: {item.episodes}
-											</div>
-											<div className="boxInfo">
-												{item.status}
-											</div>
-										</div>
+										</LazyLoad>
 									)
 								})
 						}

@@ -4,10 +4,16 @@
 	border: 1px solid var(--grey);
 }
 
-h2 {
-	font-size: 18px;
+.titleBarDiv {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	padding: 10px 20px;
 	color: var(--grey);
+	background-color: var(--transparent-grey);
+	h2 {
+		font-size: 18px;
+	}
 }
 
 .animeListGridBoxes {
@@ -33,7 +39,7 @@ h2 {
 	cursor: pointer;
 }
 
-.singleAnimeInfo:nth-of-type(2n-1) {
+.singleAnimeInfoRow:nth-of-type(2n-1) {
 	background-color: var(--red);
 	color: var(--dark-grey);
 	&:hover {
@@ -42,7 +48,7 @@ h2 {
 	}
 }
 
-.singleAnimeInfo:nth-of-type(2n) {
+.singleAnimeInfoRow:nth-of-type(2n) {
 	background-color: var(--dark-grey);
 	color: var(--red);
 	&:hover {

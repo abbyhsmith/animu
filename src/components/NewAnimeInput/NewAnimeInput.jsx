@@ -1,6 +1,7 @@
 import React from 'react'
-import './styles.scss'
 import FlowerSvg from '../svgs/Flower.jsx'
+
+import './styles.scss'
 
 const Input = ({title, setTitle, episodes, setEpisodes, status, setStatus, fetchAnimeList}) => {
 	const addNewAnime = (e) => {

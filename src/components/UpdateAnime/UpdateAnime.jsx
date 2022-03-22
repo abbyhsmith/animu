@@ -1,4 +1,6 @@
 import React from 'react'
+import FlowerSvg from '../svgs/Flower.jsx'
+
 import './styles.scss'
 
 const UpdateAnime = ({fetchAnimeList, setShowUpdateAnime, updatedTitle, updatedEpisodes, updatedStatus, setUpdatedTitle, setUpdatedEpisodes, setUpdatedStatus, animeId}) => {
@@ -56,7 +58,7 @@ const UpdateAnime = ({fetchAnimeList, setShowUpdateAnime, updatedTitle, updatedE
 								<option value="Completed">Completed</option>
 								<option value="Dropped">Dropped</option>
 							</select>
-							<button className="submitButton" type="submit">Save</button>
+							<button className="submitButton" type="submit"><FlowerSvg /></button>
 						</div>
 					</form>
 					<div className="deleteAnime">
